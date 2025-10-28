@@ -1,0 +1,7 @@
+Metric,Handcrafted Features,Learned Features
+Accuracy,0.6271,0.6625
+Precision,0.6582,0.7006
+Recall,0.6271,0.6625
+F1-Score,0.6273,0.6620
+Training Time (s),15.63,44.25
+Inference Time (s),0.41,0.48
