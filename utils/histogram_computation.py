@@ -119,17 +119,16 @@ def extract_histograms_from_dataset(df, max_samples=None):
                 print(f"Invalid ROI coordinates in row {idx}")
                 continue
             
-            # Extract ROI
+            
             roi = image[y1:y2, x1:x2]
             
             if roi.size == 0:
                 print(f"Empty ROI in row {idx}")
                 continue
-            
-            # Calculate histograms
+        
             histograms = calculate_comprehensive_histograms(roi)
             
-            # Create feature row
+            # feature row
             feature_row = {
                 'index': idx,
                 'ClassId': row['ClassId'],
@@ -139,7 +138,7 @@ def extract_histograms_from_dataset(df, max_samples=None):
                 'Path': row['Path']
             }
             
-            # Add histogram features
+            
             feature_row.update(histograms)
             features_list.append(feature_row)
             
@@ -180,7 +179,7 @@ def calculate_comprehensive_histograms(roi, bins=32):
         hist = cv2.calcHist([lab], [i], None, [bins], [0, 256])
         histograms[f'hist_lab_{color}'] = cv2.normalize(hist, hist).flatten()
     
-    # Combined feature vector
+    # Combine
     all_features = []
     for key in sorted(histograms.keys()):
         all_features.extend(histograms[key])
